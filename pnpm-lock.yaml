@@ -116,6 +116,111 @@ importers:
       vite: 3.2.4
       vite-plugin-static-copy: 0.12.0_vite@3.2.4
 
+  packages/dashboard:
+    specifiers:
+      '@babel/preset-env': ^7.16.0
+      '@coinbase/wallet-sdk': ^3.6.3
+      '@ethersproject/experimental': ^5.7.0
+      '@lottiefiles/svelte-lottie-player': ^0.2.0
+      '@sveltejs/vite-plugin-svelte': ^1.0.1
+      '@sveltestack/svelte-query': ^1.6.0
+      '@tsconfig/svelte': ^3.0.0
+      '@types/eslint': ^8.2.1
+      '@types/estree': ^0.0.50
+      '@types/jest': ^27.0.2
+      '@types/mixpanel': ^2.14.3
+      '@types/sanitize-html': ^2.6.2
+      '@typescript-eslint/eslint-plugin': ^5.16.0
+      '@typescript-eslint/parser': ^5.16.0
+      '@wagmi/connectors': ^0.1.1
+      '@wagmi/core': ^0.8.0
+      '@zerodevx/svelte-toast': ^0.6.3
+      autoprefixer: ^10.4.13
+      axios: ^1.2.0
+      babel-jest: ^27.3.1
+      babel-plugin-transform-es2015-modules-commonjs: ^6.26.2
+      buffer: ^6.0.3
+      daisyui: 1.16.6
+      ethers: ^5.7.1
+      identicon.js: ^2.3.3
+      jest: ^27.5.1
+      node-sass: ^7.0.1
+      postcss: ^8.4.19
+      postcss-cli: ^7.1.2
+      postcss-loader: ^6.2.0
+      prettier: 2.7.1
+      rollup-plugin-node-builtins: ^2.0.0
+      rollup-plugin-polyfill-node: ^0.10.2
+      svelte: ^3.53.1
+      svelte-check: ^2.8.0
+      svelte-heros-v2: ^0.3.10
+      svelte-i18n: ^3.5.1
+      svelte-jester: ^2.1.5
+      svelte-loader: ^3.1.2
+      svelte-preprocess: ^4.10.7
+      svelte-spa-router: ^3.2.0
+      tailwindcss: ^3.2.4
+      theme-change: ^2.2.0
+      ts-jest: ^27.0.7
+      ts-jest-mock-import-meta: ^0.12.0
+      ts-loader: ^9.2.6
+      tslib: ^2.4.0
+      typescript: ^4.6.4
+      vite: ^3.0.0
+      vite-plugin-static-copy: ^0.12.0
+    dependencies:
+      '@coinbase/wallet-sdk': 3.6.3_@babel+core@7.20.2
+      '@ethersproject/experimental': 5.7.0
+      '@lottiefiles/svelte-lottie-player': 0.2.0
+      '@sveltestack/svelte-query': 1.6.0
+      '@wagmi/connectors': 0.1.1_wklos3touta4goq4ye6zjwurtq
+      '@wagmi/core': 0.8.4_gexomxxtwfnmlvmj4reuwmegee
+      axios: 1.2.0
+      buffer: 6.0.3
+      ethers: 5.7.2
+      identicon.js: 2.3.3
+      svelte-i18n: 3.5.2_svelte@3.53.1
+      svelte-spa-router: 3.3.0
+    devDependencies:
+      '@babel/preset-env': 7.20.2_@babel+core@7.20.2
+      '@sveltejs/vite-plugin-svelte': 1.3.1_svelte@3.53.1+vite@3.2.4
+      '@tsconfig/svelte': 3.0.0
+      '@types/eslint': 8.4.10
+      '@types/estree': 0.0.50
+      '@types/jest': 27.5.2
+      '@types/mixpanel': 2.14.4
+      '@types/sanitize-html': 2.6.2
+      '@typescript-eslint/eslint-plugin': 5.44.0_wn2lldm33jszzpptq7r22sqksi
+      '@typescript-eslint/parser': 5.44.0_jofidmxrjzhj7l6vknpw5ecvfe
+      '@zerodevx/svelte-toast': 0.6.3
+      autoprefixer: 10.4.13_postcss@8.4.21
+      babel-jest: 27.5.1_@babel+core@7.20.2
+      babel-plugin-transform-es2015-modules-commonjs: 6.26.2
+      daisyui: 1.16.6
+      jest: 27.5.1
+      node-sass: 7.0.3
+      postcss: 8.4.21
+      postcss-cli: 7.1.2
+      postcss-loader: 6.2.1_6jdsrmfenkuhhw3gx4zvjlznce
+      prettier: 2.7.1
+      rollup-plugin-node-builtins: 2.1.2
+      rollup-plugin-polyfill-node: 0.10.2_rollup@2.79.1
+      svelte: 3.53.1
+      svelte-check: 2.9.2_qusgu27jzmoklr7jjlsel7vazu
+      svelte-heros-v2: 0.3.10
+      svelte-jester: 2.3.2_jest@27.5.1+svelte@3.53.1
+      svelte-loader: 3.1.4_svelte@3.53.1
+      svelte-preprocess: 4.10.7_y4sunccvtjgz4dr3g3pzi7kmze
+      tailwindcss: 3.2.7_postcss@8.4.21
+      theme-change: 2.2.0
+      ts-jest: 27.1.5_tr6btbnawl4wz6is4v2fl47ayu
+      ts-jest-mock-import-meta: 0.12.0_ts-jest@27.1.5
+      ts-loader: 9.4.1_hhrrucqyg4eysmfpujvov2ym5u
+      tslib: 2.5.0
+      typescript: 4.9.5
+      vite: 3.2.4
+      vite-plugin-static-copy: 0.12.0_vite@3.2.4
+
   packages/protocol:
     specifiers:
       '@defi-wonderland/smock': ^2.3.3
@@ -1606,13 +1711,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
+    dev: false
 
   /@babel/runtime/7.21.0:
     resolution: {integrity: sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
-    dev: false
 
   /@babel/template/7.18.10:
     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
@@ -3937,7 +4042,7 @@ packages:
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.2
     dev: true
 
   /@types/scheduler/0.16.2:
@@ -4367,7 +4472,7 @@ packages:
       source-map: 0.6.1
       vue-template-es2015-compiler: 1.9.1
     optionalDependencies:
-      prettier: 2.7.1
+      prettier: 2.8.4
     transitivePeerDependencies:
       - arc-templates
       - atpl
@@ -5269,7 +5374,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       delegates: 1.0.0
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
     dev: true
 
   /are-we-there-yet/3.0.1:
@@ -5277,7 +5382,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
       delegates: 1.0.0
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
     dev: true
 
   /arg/1.0.0:
@@ -6451,7 +6556,7 @@ packages:
       elliptic: 6.5.4
       inherits: 2.0.4
       parse-asn1: 5.1.6
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
       safe-buffer: 5.2.1
     dev: true
 
@@ -6459,8 +6564,8 @@ packages:
     resolution: {integrity: sha512-WHVocJYavUwVgVViC0ORikPHQquXwVh939TaelZ4WDqpWgTX/FsGhl/+P4qBUAGcRvtOgDgC+xftNWWp2RUTAQ==}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001451
-      electron-to-chromium: 1.4.291
+      caniuse-lite: 1.0.30001458
+      electron-to-chromium: 1.4.313
     dev: true
 
   /browserslist/4.21.4:
@@ -6758,10 +6863,6 @@ packages:
 
   /caniuse-lite/1.0.30001447:
     resolution: {integrity: sha512-bdKU1BQDPeEXe9A39xJnGtY0uRq/z5osrnXUw0TcK+EYno45Y+U7QU9HhHEyzvMDffpYadFXi3idnSNkcwLkTw==}
-
-  /caniuse-lite/1.0.30001451:
-    resolution: {integrity: sha512-XY7UbUpGRatZzoRft//5xOa69/1iGJRBlrieH6QYrkKLIFn3m7OVEJ81dSrKoy2BnKsdbX5cLrOispZNYo9v2w==}
-    dev: true
 
   /caniuse-lite/1.0.30001458:
     resolution: {integrity: sha512-lQ1VlUUq5q9ro9X+5gOEyH7i3vm+AYVT1WDCVB69XOZ17KZRhnZ9J0Sqz7wTHQaLBJccNCHq8/Ww5LlOIZbB0w==}
@@ -8254,10 +8355,6 @@ packages:
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
-
-  /electron-to-chromium/1.4.291:
-    resolution: {integrity: sha512-8vk4rSMBh9LRfZKE6wcxOLmlfA4Xsa4v0RRwB6VJkAH703klC9XfZIocmTk2gLBzW31P6XbuNeMt1aB5aAu/2g==}
-    dev: true
 
   /electron-to-chromium/1.4.313:
     resolution: {integrity: sha512-QckB9OVqr2oybjIrbMI99uF+b9+iTja5weFe0ePbqLb5BHqXOJUO1SG6kDj/1WtWPRIBr51N153AEq8m7HuIaA==}
@@ -9993,19 +10090,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -10932,7 +11016,7 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       inherits: 2.0.4
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
       safe-buffer: 5.2.1
 
   /hash-obj/4.0.0:
@@ -12810,7 +12894,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       inherits: 2.0.4
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
       xtend: 4.0.2
     dev: true
 
@@ -13717,7 +13801,7 @@ packages:
       ethereumjs-util: 5.2.1
       level-mem: 3.0.1
       level-ws: 1.0.0
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
       rlp: 2.2.7
       semaphore: 1.1.0
     dev: true
@@ -16259,7 +16343,6 @@ packages:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
-    dev: false
 
   /readdirp/3.2.0:
     resolution: {integrity: sha512-crk4Qu3pmXwgxdSgGhgA/eXiJAPQiX4GMOZZMXnqKxHX7TaoL+3gQVo/WeuAiogr07DpnfjIMpXXa+PAIvwPGQ==}
@@ -16330,7 +16413,7 @@ packages:
   /regenerator-transform/0.15.1:
     resolution: {integrity: sha512-knzmNAcuyxV+gQCufkYcvOqX/qIIfHLv0u5x79kRxuGojfYVky1f15TzZEu2Avte8QGepvUNTnLskf8E6X6Vyg==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.21.0
     dev: true
 
   /regex-not/1.0.2:
@@ -17326,7 +17409,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
@@ -17401,7 +17484,7 @@ packages:
     hasBin: true
     dependencies:
       buffer-crc32: 0.2.13
-      minimist: 1.2.7
+      minimist: 1.2.8
       sander: 0.5.1
       sourcemap-codec: 1.4.8
     dev: true
@@ -17937,8 +18020,8 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.53.1
-      svelte-preprocess: 4.10.7_zghfvwl5qvgby3kg6npc7yqe34
-      typescript: 4.9.3
+      svelte-preprocess: 4.10.7_y4sunccvtjgz4dr3g3pzi7kmze
+      typescript: 4.9.5
     transitivePeerDependencies:
       - '@babel/core'
       - coffeescript
@@ -18122,60 +18205,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 3.53.1
       typescript: 4.9.5
-    dev: true
-
-  /svelte-preprocess/4.10.7_zghfvwl5qvgby3kg6npc7yqe34:
-    resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
-    engines: {node: '>= 9.11.2'}
-    requiresBuild: true
-    peerDependencies:
-      '@babel/core': ^7.10.2
-      coffeescript: ^2.5.1
-      less: ^3.11.3 || ^4.0.0
-      node-sass: '*'
-      postcss: ^7 || ^8
-      postcss-load-config: ^2.1.0 || ^3.0.0 || ^4.0.0
-      pug: ^3.0.0
-      sass: ^1.26.8
-      stylus: ^0.55.0
-      sugarss: ^2.0.0
-      svelte: ^3.23.0
-      typescript: ^3.9.5 || ^4.0.0
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      coffeescript:
-        optional: true
-      less:
-        optional: true
-      node-sass:
-        optional: true
-      postcss:
-        optional: true
-      postcss-load-config:
-        optional: true
-      pug:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@babel/core': 7.20.2
-      '@types/pug': 2.0.6
-      '@types/sass': 1.43.1
-      detect-indent: 6.1.0
-      magic-string: 0.25.9
-      node-sass: 7.0.3
-      postcss: 8.4.21
-      sorcery: 0.10.0
-      strip-indent: 3.0.0
-      svelte: 3.53.1
-      typescript: 4.9.3
     dev: true
 
   /svelte-spa-router/3.3.0:
@@ -19016,7 +19045,7 @@ packages:
       js-sha3: 0.8.0
       lodash: 4.17.21
       mkdirp: 1.0.4
-      prettier: 2.8.0
+      prettier: 2.8.4
       ts-essentials: 7.0.3_typescript@4.9.3
       typescript: 4.9.3
     transitivePeerDependencies:
