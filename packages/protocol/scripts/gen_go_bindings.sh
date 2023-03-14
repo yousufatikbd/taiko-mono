@@ -7,7 +7,7 @@ set -eou pipefail
 
 script_dir="$(realpath "$(dirname $0)")"
 protocol_dir="$(realpath "${script_dir}/..")"
-go_bindings_dir=$(realpath "${protocol_dir}/bindings")
+go_bindings_dir=$(realpath "${protocol_dir}/gobind")
 abigen=$TAIKO_GETH_DIR/build/bin/abigen
 
 function compile_abigen() {
@@ -15,14 +15,6 @@ function compile_abigen() {
         return
     fi
     echo "File \"${abigen}\" not exists, need to compile"
-}
-
-function compile_protocol() {
-    cd "${protocol_dir}" &&
-        pnpm install &&
-        pnpm clean &&
-        pnpm compile &&
-        cd -
 }
 
 function extract_abi_json() {
@@ -33,7 +25,7 @@ function extract_abi_json() {
 }
 
 function gen_go_bindings() {
-    ${abigen} --abi "${l1_abi_json}" --type TaikoL1Client --abi "${l2_abi_json}" --type TaikoL2Client --pkg bindings --out "${go_bindings_dir}/contract.go"
+    ${abigen} --abi "${l1_abi_json}" --type TaikoL1Client --abi "${l2_abi_json}" --type TaikoL2Client --pkg gobind --out "${go_bindings_dir}/contract.go"
     cd "${go_bindings_dir}"
     go mod tidy
 }
@@ -47,7 +39,6 @@ echo "Start generating go contract bindings..."
 echo ""
 
 compile_abigen
-compile_protocol
 extract_abi_json
 gen_go_bindings
 clean
