@@ -260,7 +260,7 @@
     <button
       on:click={() => {
         successToast('Transaction completed!');
-      }}>hiiii</button>
+      }}>test toast</button>
     <Navbar />
     <Router {routes} />
   </main>
