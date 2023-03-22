@@ -237,9 +237,13 @@
   });
 
   const toastOptions: SvelteToastOptions = {
-    dismissable: false,
     duration: 4000,
     pausable: false,
+    theme: {
+      '--toastColor': '#fc0fc0',
+      '--toastBackground': 'rgba(72,187,120,0.9)',
+      '--toastBarBackground': 'rgba(227, 14, 173, 1)',
+    },
   };
 
   const routes = {
@@ -253,6 +257,10 @@
 
 <QueryProvider>
   <main>
+    <button
+      on:click={() => {
+        successToast('Transaction completed!');
+      }}>hiiii</button>
     <Navbar />
     <Router {routes} />
   </main>
