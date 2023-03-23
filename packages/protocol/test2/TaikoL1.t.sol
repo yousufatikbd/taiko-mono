@@ -11,6 +11,7 @@ import {TaikoToken} from "../contracts/L1/TaikoToken.sol";
 import {SignalService} from "../contracts/signal/SignalService.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {TaikoL1TestBase} from "./TaikoL1TestBase.sol";
+import {LibProposing} from "../contracts/L1/libs/LibProposing.sol";
 
 contract TaikoL1WithConfig is TaikoL1 {
     function getConfig()
@@ -197,5 +198,156 @@ contract TaikoL1Test is TaikoL1TestBase {
             parentHash = blockHash;
         }
         printVariables("");
+    }
+
+    function propose_a_block_mechanism()
+        internal
+        returns (TaikoData.BlockMetadata memory metaInTheProtocol)
+    {
+        printVariables("before propose");
+
+        uint32 gasLimit = 1000000;
+        bytes memory txList = new bytes(1024);
+        // This is the 1st parameter in the TaikoL1.sol's proposeBlock()
+        // This is what the the actual block header must satisfy.
+        TaikoData.BlockMetadataInput memory input = TaikoData
+            .BlockMetadataInput({
+                beneficiary: Alice,
+                gasLimit: gasLimit,
+                txListHash: keccak256(txList),
+                txListByteStart: 0,
+                txListByteEnd: 1024,
+                cacheTxListInfo: 0
+            });
+
+        // This way we can access the 'nextBlockId' which is needed in the metadata
+        TaikoData.StateVariables memory variables = L1.getStateVariables();
+
+        uint256 _mixHash;
+        unchecked {
+            _mixHash = block.prevrandao * variables.numBlocks;
+        }
+
+        // Here what it does is "mocking" and copying in metaInTheProtocol
+        // what will be in the protocol
+
+        // nextBlockId : filled by the protocol SC
+        metaInTheProtocol.id = variables.numBlocks;
+        // lHeight : filled (exact same way) by the protocol SC
+        metaInTheProtocol.l1Height = uint64(block.number - 1);
+        // l1Hash : filled (exact same way) by the protocol SC
+        metaInTheProtocol.l1Hash = blockhash(block.number - 1);
+        // beneficiary : msg.sender
+        metaInTheProtocol.beneficiary = Alice;
+        // txListHash: hash of the TXN list (hash of the 2nd argument of the L1.proposeBlock())
+        metaInTheProtocol.txListHash = keccak256(txList);
+        // mixHash : since multiple L2 blocks might go into L1 block, we need to provide a semi-random hash for them to rely on
+        metaInTheProtocol.mixHash = bytes32(_mixHash);
+        // gasLimit: part of the (encoded) input (metadata)
+        metaInTheProtocol.gasLimit = uint32(gasLimit);
+        // Block timestamp, coming from the protocol SC
+        metaInTheProtocol.timestamp = uint64(block.timestamp);
+
+        // Let Alice send this proposeBlockTransaction()
+        vm.prank(Alice, Alice);
+        L1.proposeBlock(abi.encode(input), txList);
+
+        mine(1);
+
+        printVariables(
+            "after propose but not yet proved so vars.lastBlockId not updated"
+        );
+    }
+
+    /// @dev Test we cannot propose if input metadata is invalid
+    function test_propose_with_invalid_metadata() public {
+        _depositTaikoToken(Alice, 1E6, 100);
+
+        uint32 gasLimit = 6000000;
+        bytes memory txList = new bytes(1024);
+
+        // Input
+        TaikoData.BlockMetadataInput memory input = TaikoData
+            .BlockMetadataInput({
+                beneficiary: address(0),
+                gasLimit: gasLimit,
+                txListHash: keccak256(txList),
+                txListByteStart: 0,
+                txListByteEnd: 1024,
+                cacheTxListInfo: 0
+            });
+
+        // beneficiary is 0 address - so should revert with invalid metadata
+        vm.prank(Alice, Alice);
+        vm.expectRevert(LibProposing.L1_INVALID_METADATA.selector);
+        L1.proposeBlock(abi.encode(input), txList);
+
+        // beneficiary is 0 address - so should revert with invalid metadata as well
+        input.gasLimit = gasLimit + 1;
+
+        vm.prank(Alice, Alice);
+        vm.expectRevert(LibProposing.L1_INVALID_METADATA.selector);
+        L1.proposeBlock(abi.encode(input), txList);
+    }
+
+    /// @dev Test we cannot propose more if we have 'maxNumProposedBlocks' unverified
+    function test_propose_but_too_many_blocks() public {
+        _depositTaikoToken(Alice, 1E6, 100);
+        bytes memory txList = new bytes(1024);
+
+        for (
+            uint256 proposed = 0;
+            proposed < conf.maxNumProposedBlocks - 1;
+            proposed++
+        ) {
+            proposeBlock(Alice, 1024);
+            mine(1);
+        }
+
+        TaikoData.BlockMetadataInput memory input = TaikoData
+            .BlockMetadataInput({
+                beneficiary: Alice,
+                gasLimit: 10,
+                txListHash: keccak256(txList),
+                txListByteStart: 0,
+                txListByteEnd: 1024,
+                cacheTxListInfo: 0
+            });
+
+        // Too many block, so next one should revert
+        vm.prank(Alice, Alice);
+        vm.expectRevert(LibProposing.L1_TOO_MANY_BLOCKS.selector);
+        L1.proposeBlock(abi.encode(input), txList);
+    }
+
+    /// @dev Test all issues related to txList
+    function test_propose_but_txn_list_has_issues() public {
+        _depositTaikoToken(Alice, 1E6, 100);
+
+        bytes memory txList = new bytes(120001);
+
+        TaikoData.BlockMetadataInput memory input = TaikoData
+            .BlockMetadataInput({
+                beneficiary: Alice,
+                gasLimit: 10,
+                txListHash: keccak256(txList),
+                txListByteStart: 0,
+                txListByteEnd: 120001,
+                cacheTxListInfo: 0
+            });
+
+        // Too big
+        vm.prank(Alice, Alice);
+        vm.expectRevert(LibProposing.L1_TX_LIST.selector);
+        L1.proposeBlock(abi.encode(input), txList);
+
+        // ByteStart is beyond ByteEnd
+        txList = new bytes(1024);
+        input.txListByteEnd = 0;
+        input.txListByteStart = 1;
+
+        vm.prank(Alice, Alice);
+        vm.expectRevert(LibProposing.L1_TX_LIST_RANGE.selector);
+        L1.proposeBlock(abi.encode(input), txList);
     }
 }

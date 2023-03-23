@@ -62,7 +62,7 @@ library LibProposing {
         uint64 timeNow = uint64(block.timestamp);
         bool txListCached;
 
-        // hanlding txList
+        // handling txList
         {
             uint24 size = uint24(txList.length);
             if (size > config.maxBytesPerTxList) revert L1_TX_LIST();
