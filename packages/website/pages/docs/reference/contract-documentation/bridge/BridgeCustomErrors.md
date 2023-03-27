@@ -1,7 +1,3 @@
----
-title: BridgeCustomErrors
----
-
 ## BridgeCustomErrors
 
 ### B_CANNOT_RECEIVE
