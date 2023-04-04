@@ -114,7 +114,6 @@ contract TaikoL2 is EssentialContract, TaikoL2Signer, IXchainSync {
                 revert L2_INVALID_1559_PARAMS();
             xscale = uint64(_xscale);
 
-            // basefee = _param1559.basefee;
             gasIssuedPerSecond = _param1559.gasIssuedPerSecond;
             gasExcess = _param1559.gasExcessMax / 2;
         }
