@@ -248,4 +248,17 @@ contract TaikoL1 is EssentialContract, IXchainSync, TaikoEvents, TaikoErrors {
     function getVerifierName(uint16 id) public pure returns (string memory) {
         return LibUtils.getVerifierName(id);
     }
+
+    // function _resolve(
+    //     uint256 chainId,
+    //     string memory name
+    // ) internal pure override returns (address addr) {
+    //     if (
+    //         chainId == 0 &&
+    //         bytes(name).length == bytes("abc").length &&
+    //         keccak256(bytes(name)) == keccak256(bytes("abc"))
+    //     ) {
+    //         return address(1);
+    //     }
+    // }
 }

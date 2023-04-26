@@ -39,8 +39,8 @@ abstract contract AddressResolver {
     function resolve(
         string memory name,
         bool allowZeroAddress
-    ) public view virtual returns (address payable) {
-        return _resolve(block.chainid, name, allowZeroAddress);
+    ) public view returns (address payable) {
+        return resolve(block.chainid, name, allowZeroAddress);
     }
 
     /**
@@ -50,14 +50,23 @@ abstract contract AddressResolver {
      * @param chainId The chainId.
      * @param name The name to resolve.
      * @param allowZeroAddress True to allow zero address to be returned.
-     * @return The name's corresponding address.
+     * @return addr The name's corresponding address.
      */
     function resolve(
         uint256 chainId,
         string memory name,
         bool allowZeroAddress
-    ) public view virtual returns (address payable) {
-        return _resolve(chainId, name, allowZeroAddress);
+    ) public view returns (address payable addr) {
+        addr = payable(_resolve(chainId, name));
+
+        if (!allowZeroAddress) {
+            // We do not use custom error so this string-based
+            // error message is more helpful for diagnosis.
+            require(
+                addr != address(0),
+                string(abi.encode("AR:zeroAddr:", chainId, ".", name))
+            );
+        }
     }
 
     /**
@@ -76,18 +85,8 @@ abstract contract AddressResolver {
 
     function _resolve(
         uint256 chainId,
-        string memory name,
-        bool allowZeroAddress
-    ) private view returns (address payable addr) {
-        addr = payable(_addressManager.getAddress(chainId, name));
-
-        if (!allowZeroAddress) {
-            // We do not use custom error so this string-based
-            // error message is more helpful for diagnosis.
-            require(
-                addr != address(0),
-                string(abi.encode("AR:zeroAddr:", chainId, ".", name))
-            );
-        }
+        string memory name
+    ) internal view virtual returns (address) {
+        return _addressManager.getAddress(chainId, name);
     }
 }
