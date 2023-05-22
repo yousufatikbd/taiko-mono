@@ -4,7 +4,7 @@ pragma solidity ^0.8.18;
 import {Test} from "forge-std/Test.sol";
 import {console2} from "forge-std/console2.sol";
 import {AddressManager} from "../contracts/common/AddressManager.sol";
-import {LibEthDepositing} from "../contracts/L1/libs/LibEthDepositing.sol";
+import {LibUtils} from "../contracts/L1/libs/LibUtils.sol";
 import {TaikoConfig} from "../contracts/L1/TaikoConfig.sol";
 import {TaikoData} from "../contracts/L1/TaikoData.sol";
 import {TaikoL1} from "../contracts/L1/TaikoL1.sol";
@@ -167,7 +167,7 @@ contract TaikoL1Test is TaikoL1TestBase {
         console2.log("gas used with eth deposits:", gasUsedWithDeposits);
 
         printVariables("after processing send-ethers");
-        assertTrue(LibEthDepositing.hashEthDeposits(meta.depositsProcessed) != emptyDepositsRoot);
+        assertTrue(LibUtils.hashEthDeposits(meta.depositsProcessed) != emptyDepositsRoot);
         assertEq(meta.depositsProcessed.length, count + 1);
 
         gas = gasleft();
@@ -289,7 +289,7 @@ contract TaikoL1Test is TaikoL1TestBase {
         // Expected: 0x8117066d69ff650d78f0d7383a10cc802c2b8c0eedd932d70994252e2438c636  (pre calculated with these values)
         //console2.logBytes32(meta.depositsRoot);
         assertEq(
-            LibEthDepositing.hashEthDeposits(meta.depositsProcessed), 0x8117066d69ff650d78f0d7383a10cc802c2b8c0eedd932d70994252e2438c636
+            LibUtils.hashEthDeposits(meta.depositsProcessed), 0x8117066d69ff650d78f0d7383a10cc802c2b8c0eedd932d70994252e2438c636
         );
     }
 }

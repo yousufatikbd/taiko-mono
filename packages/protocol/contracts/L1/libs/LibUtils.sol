@@ -7,7 +7,6 @@
 pragma solidity ^0.8.18;
 
 import {LibMath} from "../../libs/LibMath.sol";
-import {LibEthDepositing} from "./LibEthDepositing.sol";
 import {LibTokenomics} from "./LibTokenomics.sol";
 import {SafeCastUpgradeable} from
     "@openzeppelin/contracts-upgradeable/utils/math/SafeCastUpgradeable.sol";
@@ -77,7 +76,6 @@ library LibUtils {
         return _ma > 0 ? _ma : maValue;
     }
 
-    /// @dev Hasing the block metadata, ignoring the `cacheTxListInfo` field.
     function hashMetadata(TaikoData.BlockMetadata memory meta)
         internal
         pure
@@ -90,7 +88,7 @@ library LibUtils {
 
         inputs[1] = uint256(meta.l1Hash);
         inputs[2] = uint256(meta.mixHash);
-        inputs[3] = uint256(LibEthDepositing.hashEthDeposits(meta.depositsProcessed));
+        inputs[3] = uint256(hashEthDeposits(meta.depositsProcessed));
         inputs[4] = uint256(meta.txListHash);
 
         inputs[5] = (uint256(meta.txListByteStart) << 232) | (uint256(meta.txListByteEnd) << 208)
@@ -101,6 +99,27 @@ library LibUtils {
         assembly {
             hash := keccak256(inputs, mul(7, 32))
         }
+    }
+
+    function hashEthDeposits(TaikoData.EthDeposit[] memory deposits)
+        internal
+        pure
+        returns (bytes32)
+    {
+        bytes memory buffer = new bytes(32 * deposits.length);
+
+        for (uint256 i; i < deposits.length;) {
+            uint256 encoded =
+                uint256(uint160(deposits[i].recipient)) << 96 | uint256(deposits[i].amount);
+            assembly {
+                mstore(add(buffer, mul(32, add(1, i))), encoded)
+            }
+            unchecked {
+                ++i;
+            }
+        }
+
+        return keccak256(buffer);
     }
 
     function keyForForkChoice(bytes32 parentHash, uint32 parentGasUsed)
