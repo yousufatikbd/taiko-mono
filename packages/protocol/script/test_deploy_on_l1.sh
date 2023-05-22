@@ -3,7 +3,7 @@
 # This script is only used by `pnpm deploy:foundry`.
 set -e
 
-anvil & while ! nc -z localhost 8545; do sleep 1; done
+# anvil & while ! nc -z localhost 8545; do sleep 1; done
 
 PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
 SHARED_SIGNAL_SERVICE=0x0000000000000000000000000000000000000000 \
@@ -24,4 +24,4 @@ forge script script/DeployOnL1.s.sol:DeployOnL1 \
     -vvvv \
     --block-gas-limit 100000000
 
-kill $(lsof -t -i:8545)
+# kill $(lsof -t -i:8545)
