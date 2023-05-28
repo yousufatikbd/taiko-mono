@@ -107,8 +107,8 @@ contract DeployOnL1 is Script {
         address horseToken = address(new FreeMintERC20("Horse Token", "HORSE"));
         console2.log("HorseToken", horseToken);
 
-        address bullToken = address(new MayFailFreeMintERC20("Bull Token", "BLL"));
-        console2.log("BullToken", bullToken);
+        // address bullToken = address(new MayFailFreeMintERC20("Bull Token", "BLL"));
+        // console2.log("BullToken", bullToken);
 
         uint64 feeBase = uint64(1) ** taikoToken.decimals();
 
@@ -142,37 +142,37 @@ contract DeployOnL1 is Script {
         setAddress("taiko", taikoL1Proxy);
         setAddress("proto_broker", taikoL1Proxy);
 
-        // Bridge
-        Bridge bridge = new ProxiedBridge();
-        deployProxy(
-            "bridge",
-            address(bridge),
-            bytes.concat(bridge.init.selector, abi.encode(addressManagerProxy))
-        );
+        // // Bridge
+        // Bridge bridge = new ProxiedBridge();
+        // deployProxy(
+        //     "bridge",
+        //     address(bridge),
+        //     bytes.concat(bridge.init.selector, abi.encode(addressManagerProxy))
+        // );
 
-        // TokenVault
-        TokenVault tokenVault = new ProxiedTokenVault();
-        deployProxy(
-            "token_vault",
-            address(tokenVault),
-            bytes.concat(tokenVault.init.selector, abi.encode(addressManagerProxy))
-        );
+        // // TokenVault
+        // TokenVault tokenVault = new ProxiedTokenVault();
+        // deployProxy(
+        //     "token_vault",
+        //     address(tokenVault),
+        //     bytes.concat(tokenVault.init.selector, abi.encode(addressManagerProxy))
+        // );
 
-        // SignalService
-        if (sharedSignalService == address(0)) {
-            SignalService signalService = new ProxiedSignalService();
-            deployProxy(
-                "signal_service",
-                address(signalService),
-                bytes.concat(signalService.init.selector, abi.encode(addressManagerProxy))
-            );
-        } else {
-            console2.log("Warining: using shared signal service: ", sharedSignalService);
-            setAddress("signal_service", sharedSignalService);
-        }
+        // // SignalService
+        // if (sharedSignalService == address(0)) {
+        //     SignalService signalService = new ProxiedSignalService();
+        //     deployProxy(
+        //         "signal_service",
+        //         address(signalService),
+        //         bytes.concat(signalService.init.selector, abi.encode(addressManagerProxy))
+        //     );
+        // } else {
+        //     console2.log("Warining: using shared signal service: ", sharedSignalService);
+        //     setAddress("signal_service", sharedSignalService);
+        // }
 
-        // PlonkVerifier
-        deployPlonkVerifiers();
+        // // PlonkVerifier
+        // deployPlonkVerifiers();
 
         vm.stopBroadcast();
     }
