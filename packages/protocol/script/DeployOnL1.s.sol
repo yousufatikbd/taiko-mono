@@ -99,7 +99,11 @@ contract DeployOnL1 is Script {
             bytes.concat(
                 taikoToken.init.selector,
                 abi.encode(
-                    addressManagerProxy, "Taiko Token", "TKO", premintRecipients, premintAmounts
+                    addressManagerProxy,
+                    "Test Taiko Token",
+                    "TTKO",
+                    premintRecipients,
+                    premintAmounts
                 )
             )
         );
