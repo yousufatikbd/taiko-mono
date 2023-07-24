@@ -33,6 +33,16 @@ Next, open the `.env` file in your preferred text editor and set:
 ARCHIVE_NODE=true
 ```
 
+### Expose execution RPC port
+
+Open the `.env` file and append `el-shared.yml` to the `COMPOSE_FILE` key. This will allow you to use the RPC port on your node.
+
+It should look something like this:
+
+```sh
+COMPOSE_FILE=lighthouse-cl-only.yml:geth.yml:grafana.yml:grafana-shared.yml:el-shared.yml
+```
+
 ### Complete the eth-docker quickstart
 
 Complete the eth-docker quickstart: https://eth-docker.net/Usage/QuickStart/.
