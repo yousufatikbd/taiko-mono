@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/taikoxyz/taiko-mono/compare/website-v0.13.0...website-v0.14.0) (2023-08-21)
+
+
+### Features
+
+* **website:** add bitget to ecosystem ([#14536](https://github.com/taikoxyz/taiko-mono/issues/14536)) ([2ec21a3](https://github.com/taikoxyz/taiko-mono/commit/2ec21a3cbbbe5c335298e56e39e07cf199d86e97))
+
 ## [0.13.0](https://github.com/taikoxyz/taiko-mono/compare/website-v0.12.0...website-v0.13.0) (2023-08-15)
 
 

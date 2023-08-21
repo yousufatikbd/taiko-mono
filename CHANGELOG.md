@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.19.0](https://github.com/taikoxyz/taiko-mono/compare/taiko-mono-v0.18.0...taiko-mono-v0.19.0) (2023-08-21)
+
+
+### Features
+
+* **bridge-ui-v2:** destination token bridged ([#14448](https://github.com/taikoxyz/taiko-mono/issues/14448)) ([072afbf](https://github.com/taikoxyz/taiko-mono/commit/072afbf3e54efe813a3eb76000faa4861620caba))
+* **bridge-ui-v2:** fix vercel routing ([#14522](https://github.com/taikoxyz/taiko-mono/issues/14522)) ([2ab5faf](https://github.com/taikoxyz/taiko-mono/commit/2ab5faf11789078730b3b3e3eab516fb6ca11d0a))
+* **bridge-ui-v2:** light theme ([#14524](https://github.com/taikoxyz/taiko-mono/issues/14524)) ([4fe5ccd](https://github.com/taikoxyz/taiko-mono/commit/4fe5ccdc6d91f11d697beba76f6ad205bc6af2bf))
+* **bridge-ui-v2:** Processing fee input box ([#14527](https://github.com/taikoxyz/taiko-mono/issues/14527)) ([886ab31](https://github.com/taikoxyz/taiko-mono/commit/886ab311812b4583c823976524d799b2b9e90d46))
+* **bridge-ui-v2:** switch chain on wrong network ([#14511](https://github.com/taikoxyz/taiko-mono/issues/14511)) ([89b8a86](https://github.com/taikoxyz/taiko-mono/commit/89b8a86134fe9227d6011f69c7de0b8420ad25dc))
+* **bridge-ui-v2:** update the style of chain selector ([#14517](https://github.com/taikoxyz/taiko-mono/issues/14517)) ([35ef27d](https://github.com/taikoxyz/taiko-mono/commit/35ef27db2df032b6639ce3ed719cb78c081b9c9f))
+* **bridge-ui-v2:** update the style of switch chain button ([#14518](https://github.com/taikoxyz/taiko-mono/issues/14518)) ([6099842](https://github.com/taikoxyz/taiko-mono/commit/6099842821935066c99fcc0f5996ba183ea11a89))
+* **website:** add bitget to ecosystem ([#14536](https://github.com/taikoxyz/taiko-mono/issues/14536)) ([2ec21a3](https://github.com/taikoxyz/taiko-mono/commit/2ec21a3cbbbe5c335298e56e39e07cf199d86e97))
+* **website:** update forkdiff website ([#14515](https://github.com/taikoxyz/taiko-mono/issues/14515)) ([c820166](https://github.com/taikoxyz/taiko-mono/commit/c8201660635392f1112d5ce97a5401323f880fe1))
+
+
+### Bug Fixes
+
+* **pos-dashboard:** fix the history page ([#14535](https://github.com/taikoxyz/taiko-mono/issues/14535)) ([95a6f2c](https://github.com/taikoxyz/taiko-mono/commit/95a6f2c64767ba596b8259461b6d5a679839c8e7))
+* **relayer:** use erc20vault not token vault for required end var ([#14519](https://github.com/taikoxyz/taiko-mono/issues/14519)) ([a49c65c](https://github.com/taikoxyz/taiko-mono/commit/a49c65c6ba9535a761f4ef2abd7be2b2213a71c2))
+
 ## [0.18.0](https://github.com/taikoxyz/taiko-mono/compare/taiko-mono-v0.17.0...taiko-mono-v0.18.0) (2023-08-15)
 
 
